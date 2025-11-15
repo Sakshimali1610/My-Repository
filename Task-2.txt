@@ -1,0 +1,45 @@
+package com.testng;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+
+import java.time.Duration;
+
+public class LoginPage {
+    WebDriver dr;
+
+    @BeforeTest
+    public void beforeTest() {
+        dr = new ChromeDriver();
+        dr.manage().window().maximize();
+        dr.get("https://practicetestautomation.com/practice-test-login/");
+    }
+
+    @Test
+    public void f() throws InterruptedException {
+        WebElement username = dr.findElement(By.name("username"));
+        username.click();
+        username.sendKeys("student");
+        Thread.sleep(4000);
+
+        WebElement password = dr.findElement(By.name("password"));
+        password.click();
+        password.sendKeys("Password123");
+        Thread.sleep(4000);
+        
+        WebElement loginButton = dr.findElement(By.id("submit"));
+        loginButton.click();
+        Thread.sleep(4000);
+    }
+
+    @AfterTest
+    public void afterTest() {
+        //dr.quit();
+    }
+}
